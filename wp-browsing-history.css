@@ -1,0 +1,57 @@
+/*
+Sample HTML:
+<div class="wp-browsing-history">
+	<h2 class="history-header">閲覧履歴</h2>
+	<ol class="history-list">
+		<li class="history-record history-record-1">
+			<span class="history-title">
+				<a href="http://..../" class="history-link">
+					記事タイトル
+				</a>
+			</span>
+			<span class="history-date">
+				(2014/01/01 00:00:00)
+			</span>
+		</li>
+		<li class="history-record history-record-2">
+			...
+		</li>
+		...
+		<li class="history-record history-record-5">
+			...
+		</li>
+	</ol>
+</div>
+*/
+
+.wp-browsing-history {
+
+}
+
+.wp-browsing-history .history-list {
+	margin: 5px 10px 10px 10px;
+	padding: 0px 5px 0px 2em;
+	list-style-type: decimal;
+
+	border: none;
+}
+
+.wp-browsing-history .history-list .history-record {
+	margin: 0;
+	padding: 5px 0px 5px 0px;
+
+	border: none;
+	border-bottom: 1px solid #DDDDDD;
+}
+
+.wp-browsing-history .history-list .history-record:first-child {
+	border-top: 1px solid #DDDDDD;
+}
+
+.wp-browsing-history .history-list .history-record .history-date {
+	font-size: 80%;
+}
+
+.wp-browsing-history .history-list .history-record .history-date:before {
+	content: ' ';
+}
