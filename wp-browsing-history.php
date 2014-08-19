@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: WP Browsing History
-Plugin URI: http://did2memo.net/
+Plugin URI: http://did2memo.net/2014/08/19/wp-browsing-history/
 Description:
 	You can place a history list of pages read by each user on your template using wp-user-history().
 	History records are stored as cookies.
