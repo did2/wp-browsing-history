@@ -18,19 +18,20 @@ $wp_history = array(); // global variable for PHP <= 5.2
 add_action('wp_enqueue_scripts', 'wp_browsing_history_script');
 
 function wp_browsing_history_script() {
-	if ( ! is_user_logged_in() ) {
-		return;
-	}
-
 	wp_enqueue_script(
 		'wp-browsing-history-jquery-cookie',
 		plugins_url('/jquery.cookie.js', __FILE__),
 		array ( 'jquery' )
 	);
 
+	if ( @file_exists ( TEMPLATEPATH . '/wp-browsing-history-variables.js' ) ) {
+		$variables_path = get_template_directory_uri() . '/wp-browsing-history-variables.js';
+	} else {
+		$variables_path = plugins_url('/wp-browsing-history-variables.js', __FILE__);
+	}
 	wp_enqueue_script(
 		'wp-browsing-history-variables',
-		plugins_url('/wp-browsing-history-variables.js', __FILE__),
+		$variables_path,
 		array ( 'jquery', 'wp-browsing-history-jquery-cookie' )
 	);
 	
@@ -47,8 +48,22 @@ function wp_browsing_history_script() {
 			array ( 'jquery', 'wp-browsing-history-jquery-cookie', 'wp-browsing-history-variables', 'wp-browsing-history-display' )
 		);
 	}
+
+	wp_enqueue_style('wp-browsing-history', plugins_url('wp-browsing-history.css', __FILE__), false);
 }
 
 function wp_browsing_history_list() {
-	echo '<div class="history"></div>'; 
+	echo '<div class="wp-browsing-history"></div>'; 
+}
+
+add_action('the_content', 'wp_browsing_history_variables_injection');
+
+function wp_browsing_history_variables_injection( $content ) {
+	global $post;
+	if ( is_single() ) {
+		setup_postdata( $post );
+		$content .= '<div id="wp-browsing-history-title" style="display:none;">' . get_the_title() . '</div>';
+		$content .= '<div id="wp-browsing-history-url" style="display:none;">' . get_permalink( $post->ID ) . '</div>';
+	}
+	return $content;
 }

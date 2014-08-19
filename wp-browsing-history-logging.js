@@ -1,6 +1,6 @@
 jQuery(function($) {
-	var title = $("#entry-title-main a").html();
-	var url = $("#entry-title-main a").attr("href");
+	var title = $("#wp-browsing-history-title").html();
+	var url = $( "#wp-browsing-history-url").html();
 	var time = parseInt((new Date)/1000);
 
 	var record = {
@@ -24,8 +24,8 @@ jQuery(function($) {
 	history["list"][0] = record;
 	history["length"] += 1;
 
-	if ( WPBH_MAX_LENGTH < parseInt(history["length"]) ) {
-		delete history["list"][WPBH_MAX_LENGTH];
+	if ( WPBH_MAX_HISTORY_LENGTH < parseInt(history["length"]) ) {
+		delete history["list"][WPBH_MAX_HISTORY_LENGTH];
 		history["length"] -= 1;
 	}
 
