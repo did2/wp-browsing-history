@@ -32,15 +32,23 @@ jQuery(function($) {
 			}
 
 			if ( WPBH_ENABLE_DATE ) {
-				list += '<span class="history-date">(';
-				list += new Date( hist["time"] * 1000 ).toLocaleString();
-				list += ')</span><br />';
+				list += '<span class="history-date">';
+				if ( WPBH_ENABLE_DATE_PARENTHESIS ) {
+					list += '(' + new Date( hist["time"] * 1000 ).toLocaleString() + ')';
+				} else {
+					list += new Date( hist["time"] * 1000 ).toLocaleString();
+				}
+				list += '</span>';
 			}
 
 			list += '</li>';
 		}
 		html += list;
 		html += "</ol>";
+
+		if ( WPBH_SHOW_PLUGIN_LINK ) {
+			html += '<p class="history-powered-by">powered by <a href="http://did2memo.net/2014/08/19/wp-browsing-history/" rel="nofollow">WP Browsing History Plugin</a></p>';
+		}
 
 		if ( 0 < $(".wp-browsing-history").size() ) {
 			$(".wp-browsing-history").append( html );
