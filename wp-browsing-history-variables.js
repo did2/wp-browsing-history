@@ -2,6 +2,7 @@ var WPBH_COOKIE_NAME_HISTORY = "browsing_history";
 var WPBH_COOKIE_VERSION = "1.0.0";
 
 var WPBH_MAX_HISTORY_LENGTH = 5;
+var WPBH_ENABLE_DUPLICATION_AVOIDANCE = true;
 
 var WPBH_ENABLE_HEADING = true;
 var WPBH_HEADING_TEXT = "あなたの閲覧履歴";
